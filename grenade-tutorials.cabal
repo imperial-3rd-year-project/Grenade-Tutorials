@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: b4770fdcab73c728fc74eddee714dbd9beffa7880637ff2156a6bf41deea2bb9
+-- hash: fec9f3c5a24a0b74b6067d0d9e8ea88975476dd65a35a341a899d63e08c42120
 
 name:           grenade-tutorials
 version:        0.1.0.0
@@ -25,38 +25,16 @@ source-repository head
   type: git
   location: https://github.com/githubuser/grenade-tutorials
 
-library
-  exposed-modules:
-      Lib
+executable circle
+  main-is: circle.hs
   other-modules:
       Paths_grenade_tutorials
   hs-source-dirs:
       src
-  build-depends:
-      base >=4.7 && <5
-  default-language: Haskell2010
-
-executable grenade-tutorials-exe
-  main-is: Main.hs
-  other-modules:
-      Paths_grenade_tutorials
-  hs-source-dirs:
-      app
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
-      base >=4.7 && <5
-    , grenade-tutorials
-  default-language: Haskell2010
-
-test-suite grenade-tutorials-test
-  type: exitcode-stdio-1.0
-  main-is: Spec.hs
-  other-modules:
-      Paths_grenade_tutorials
-  hs-source-dirs:
-      test
-  ghc-options: -threaded -rtsopts -with-rtsopts=-N
-  build-depends:
-      base >=4.7 && <5
-    , grenade-tutorials
+      MonadRandom ==0.5.2
+    , base >=4.7 && <5
+    , grenade
+    , hmatrix >=0.20.0.0
   default-language: Haskell2010

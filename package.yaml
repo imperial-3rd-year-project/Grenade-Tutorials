@@ -21,28 +21,18 @@ description:         Please see the README on GitHub at <https://github.com/gith
 
 dependencies:
 - base >= 4.7 && < 5
-
-library:
-  source-dirs: src
+- grenade ==0.1.1
+- MonadRandom ==0.5.2
+- hmatrix >=0.20.0.0
 
 executables:
-  grenade-tutorials-exe:
-    main:                Main.hs
-    source-dirs:         app
+  circle:
+    main:                circle.hs
+    source-dirs:         src
     ghc-options:
     - -threaded
     - -rtsopts
     - -with-rtsopts=-N
     dependencies:
-    - grenade-tutorials
+    - grenade
 
-tests:
-  grenade-tutorials-test:
-    main:                Spec.hs
-    source-dirs:         test
-    ghc-options:
-    - -threaded
-    - -rtsopts
-    - -with-rtsopts=-N
-    dependencies:
-    - grenade-tutorials
