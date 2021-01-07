@@ -99,7 +99,7 @@ main = do
                                   }
     -- Now we train the network with the fit function.
     -- We pass in a list of tuples of inputs and expected outputs,
-    -- and use the quadratic loss function. We train for one epoch.
+    -- and use the quadratic loss function. We train for ten epochs.
     -- We use the same data to validate.
     let testData = zip inps (map circle inps)
     net <- fit testData testData options 10 quadratic'
