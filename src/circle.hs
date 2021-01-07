@@ -83,16 +83,16 @@ circle (S1D v) =
 --}
 main :: IO ()
 main = do
-    -- Train on 100000 examples, randomly generated with a uniform 
+    -- Train on 10000 examples, randomly generated with a uniform 
     -- distribution.
-    let n = 100000
+    let n = 10000
     inps <- replicateM n $ do
       s  <- getRandom
       return $ S1D $ SA.randomVector s SA.Uniform * 2 - 1
     -- For our network, we will use stochastic gradient descent with a batch
     -- size of 1. 
     let options = TrainingOptions { optimizer      = OptSGD 0.01 0.9 0.0001
-                                  , batchSize      = 1
+                                  , batchSize      = 10
                                   , validationFreq = 1
                                   , verbose        = Full 
                                   , metrics        = [Quadratic]
@@ -100,8 +100,9 @@ main = do
     -- Now we train the network with the fit function.
     -- We pass in a list of tuples of inputs and expected outputs,
     -- and use the quadratic loss function. We train for one epoch.
-    -- There is no validation data, hence we pass in an empty list.
-    net <- fit (zip inps (map circle inps)) [] options 1 quadratic'
+    -- We use the same data to validate.
+    let testData = zip inps (map circle inps)
+    net <- fit testData testData options 10 quadratic'
 
     -- Now we visualise what our network has learned.
     drawCircle net
